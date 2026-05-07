@@ -1,5 +1,6 @@
 import Container from "@/components/container";
 import { GameProps } from "@/utils/types/game";
+import Input from "@/components/input";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -9,7 +10,8 @@ import { BsArrowRightSquare } from "react-icons/bs";
 async function getDalyGames() {
   try {
     const res = await fetch(
-      `${process.env.NEXT_API_URL}/next-api/?api=game_day`, { next: { revalidate: 320 } } // Mantém o cache da requisição por 320 segundos
+      `${process.env.NEXT_API_URL}/next-api/?api=game_day`,
+      { next: { revalidate: 320 } }, // Mantém o cache da requisição por 320 segundos
     );
     return res.json();
   } catch (err) {
@@ -41,11 +43,13 @@ export default async function Home() {
                 priority
                 fill
                 className="max-h-96 object-cover rounded-lg opacity-50 hover:opacity-100 transition-all duration-150"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 44vw"
               />
             </div>
           </section>
         </Link>
+
+        <Input />
       </Container>
     </main>
   );
